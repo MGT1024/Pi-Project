@@ -1,3 +1,3 @@
 #hello world
 def yes():
-    pass
+    return 1

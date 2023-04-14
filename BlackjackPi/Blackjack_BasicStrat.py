@@ -1,7 +1,7 @@
 from functools import reduce
 from basicStrategyDict import deckOfCards, hardTotalDict, softTotalDict, pairSplittingDict
 
-
+# hands
 hand = [deckOfCards[None], deckOfCards[None]]
 dealerUpCard = None
 handTotal = reduce(lambda x, y: x+y, hand)

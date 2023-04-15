@@ -36,7 +36,3 @@ def pairSplitting():
     pairSplittingDict[None][None]
 
 
-Running = True
-
-while Running:
-    pass

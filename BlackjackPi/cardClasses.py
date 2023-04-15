@@ -30,10 +30,32 @@ class Deck:
         for i in range(len(self.cards) -1, 0, -1):
             r = random.randint(0, i)
             self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
-deck = Deck
-deck.show()
+
+    def drawCard(self):
+        return self.cards.pop()
+    
+class Player:
+    def __init__(self, name):
+        self.name = name
+        self.hand = []
+
+    def draw(self, deck):
+        self.hand.append(deck.drawCard())
+        return self
+    
+    def showHand(self):
+        for card in self.hand:
+            card.show()
 
 
+deck = Deck()
+deck.shuffle()
+# deck.show()
 
-card = Card("Card", 6)
-card.show()
+gunt = Player("Gunt")
+gunt.draw(deck)
+gunt.showHand()
+
+
+# card = Card("Card", 6)
+# card.show()

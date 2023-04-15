@@ -1,8 +1,16 @@
 from functools import reduce
-from basicStrategyDict import deckOfCards, hardTotalDict, softTotalDict, pairSplittingDict
+from basicStrategyDict import *
+import random
+# hands 
+hand = []
+for i in deckOfCards:
+    hand = hand + deckOfCards[i]
+    for y in deckOfCards:
+        hand = hand +deckOfCards[y]
+        print(hand)
 
-# hands dfgdgsgjsfhjsghks rtnsty
-hand = [deckOfCards[None], deckOfCards[None]]
+dealers = random.choice(deckOfCards.keys)
+print (dealers)
 dealerUpCard = None
 handTotal = reduce(lambda x, y: x+y, hand)
 

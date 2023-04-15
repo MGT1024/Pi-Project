@@ -20,7 +20,18 @@ class Deck:
     def build(self):
         for i in ["Spades", "Clubs", "Diamonds", "Hearts"]:
             for j in range(1,14):
+                if j == 11:
+                    j = "Jack"
+                elif j == 12:
+                    j = "Queen"
+                elif j == 13:
+                    j = "King"
+                elif j == 1:
+                    j = "Ace"
+
                 self.cards.append(Card(i, j))
+
+
 
     def show(self):
         for cards in self.cards:

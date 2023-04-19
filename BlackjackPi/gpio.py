@@ -38,7 +38,6 @@ def allOff():
         for i in leds:
             GP.output(leds[i], GP.LOW)
 
-
 if STAND:
         GP.output(leds[3], GP.HIGH)
 elif DOUBLE:

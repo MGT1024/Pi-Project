@@ -7,10 +7,8 @@ class Card:
         self.suit = suit
         self.value = val
 
-
-    def show(self):
-        print(f"{self.value} of {self.suit}")
-
+    def __str__(self):
+        return f"{self.value} of {self.suit}"
 
 class Deck:
     def __init__(self):
@@ -28,10 +26,7 @@ class Deck:
                     j = "King"
                 elif j == 1:
                     j = "Ace"
-
                 self.cards.append(Card(i, j))
-
-
 
     def show(self):
         for cards in self.cards:
@@ -45,6 +40,10 @@ class Deck:
     def drawCard(self):
         return self.cards.pop()
     
+    def __str__(self):
+        for i in self.cards:
+            return self.cards[i]
+
 class Player:
     def __init__(self, name):
         self.name = name
@@ -58,15 +57,14 @@ class Player:
         for card in self.hand:
             card.show()
 
+    def __str__(self):
+        return f"{self.hand}"
+
 
 deck = Deck()
-deck.shuffle()
-# deck.show()
+# deck.shuffle()
+print(deck)
 
-gunt = Player("Gunt")
-gunt.draw(deck)
-gunt.showHand()
-
-
-# card = Card("Card", 6)
-# card.show()
+# gunt = Player("Gunt")
+# gunt.draw(deck)
+# print(gunt)

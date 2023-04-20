@@ -19,13 +19,7 @@ def setGPIO():
     gpio = [6, 13,  19, 21]
     GP.setup(gpio, GP.OUT)
     return gpio
-# lights = {
-#     'red': 6,
-#     'blue': 13,
-#     'yellow': 19,
-#     'green': 21,
 
-# }
 leds = [six,tTeen,nTeen,tOne]
 GP.setup(leds, GP.OUT)
 GP.output(leds, GP.LOW)

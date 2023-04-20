@@ -1,62 +1,95 @@
+from tkinter.ttk import LabeledScale
+from turtle import hideturtle
+from xmlrpc.server import SimpleXMLRPCDispatcher
 import RPi.GPIO as GP
 from time import sleep
-from Blackjack_BasicStrat import *
-from basicStrategyDict import *
 
 HIT = False
 SPLIT = False
 DOUBLE = False
-STAND= False
+STAND = False
 BUST = False
-DEBUG = False
 
 GP.setmode(GP.BCM)
-GP.setup(6, GP.OUT, initial=GP.LOW)
-GP.setup(13, GP.OUT, initial=GP.LOW)
-GP.setup(19, GP.OUT, initial=GP.LOW)
-GP.setup(21, GP.OUT, initial=GP.LOW)
+six = 6
+tTeen = 13
+nTeen = 19
+tOne = 21
+def setGPIO():
+    gpio = [6, 13,  19, 21]
+    GP.setup(gpio, GP.OUT)
+    return gpio
+# lights = {
+#     'red': 6,
+#     'blue': 13,
+#     'yellow': 19,
+#     'green': 21,
 
-
-
-#lights = next move (GREEN = HIT/YELLOW = DOUBLE/ RED = STAND)
-lights = {
-    'red': {'led':6},
-    'blue': {'led': 13},
-    'yellow': {'led': 19},
-    'green': {'led': 21},
-}
-leds = [6,13,19,21]
-
-# for key in lights.keys():
-#     GP.setup(leds[key]["led"], GP.OUT)
-
-def allOn():
-        for i in leds:
-            GP.output(leds[i], GP.HIGH)
+# }
+leds = [six,tTeen,nTeen,tOne]
+GP.setup(leds, GP.OUT)
+GP.output(leds, GP.LOW)
 
 def allOff():
-        for i in leds:
-            GP.output(leds[i], GP.LOW)
+    GP.output(leds, GP.LOW)
+    
+   
+def allOn():
+    GP.output(leds, GP.HIGH)
+    sleep(5)
 
-if STAND:
-        GP.output(leds[3], GP.HIGH)
+
+def standing():
+   GP.output (leds[0], GP.HIGH),
+   GP.output(leds[1], GP.LOW),
+   GP.output(leds[2], GP.LOW),
+   GP.output(leds[3], GP.LOW)
+   sleep(8)
+   
+def dublin():
+    GP.output (leds[0], GP.LOW),
+    GP.output(leds[1], GP.HIGH),
+    GP.output(leds[2], GP.LOW),
+    GP.output(leds[3], GP.LOW)
+    sleep(8)
+def splitting():
+    GP.output (leds[0], GP.LOW),
+    GP.output(leds[1], GP.LOW),
+    GP.output(leds[2], GP.HIGH),
+    GP.output(leds[3], GP.LOW)
+    sleep(8)
+def hitting():
+    GP.output (leds[0], GP.LOW),
+    GP.output(leds[1], GP.LOW),
+    GP.output(leds[2], GP.LOW),
+    GP.output(leds[3], GP.HIGH)
+    sleep(8)
+def busting():
+    GP.output(six, GP.HIGH)
+    sleep(0.5)
+    GP.output(six, GP.LOW)
+    sleep(0.5)
+
+if STAND :
+    standing()
 elif DOUBLE:
-    GP.output(leds[1], GP.HIGH)
-
+    dublin()
 elif SPLIT:
-    GP.output(leds[2], GP.HIGH)
-
+    splitting()
 elif HIT:
-   GP.output(leds[3], GP.HIGH)
-    
+    hitting()
 elif BUST:
-    GP.output(6, GP.HIGH)
-    sleep(0.5)
-    GP.output(6, GP.LOW)
-    sleep(0.5)
-    
+    busting()
+    busting()
+    busting()
+    busting()
+    busting()
+    busting()
+    busting()
+    busting()
+else: allOff()
 
-
+gpio = setGPIO()
 
 
 GP.cleanup()

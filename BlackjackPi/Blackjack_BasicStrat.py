@@ -1,6 +1,7 @@
 from functools import reduce
 from basicStrategyDict import *
 import random
+# from gpio import *
 # hands 
 dealerUpCard = []
 hand = []
@@ -19,7 +20,9 @@ print(f"Dealer's showing a {dealers}, {val} points")
 
 
 
-
+#   HARD TOTALS
+# if points > 21:
+#     BUST == True
 
 
 

@@ -16,7 +16,7 @@ class StandButton(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
 
-        self.image = pygame.image.load("Pi-Project\\BlackjackPi\\images\\stand button.png").convert_alpha()
+        self.image = pygame.image.load("BlackjackPi\\images\\stand button.png").convert_alpha()
         self.image = pygame.transform.rotozoom(self.image, 0, 0.4)
         self.rect =  self.image.get_rect(midbottom = (700, 275))
 
@@ -26,7 +26,7 @@ class StandButton(pygame.sprite.Sprite):
 class HitButton(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("Pi-Project\\BlackjackPi\\images\\hit button.png").convert_alpha()
+        self.image = pygame.image.load("BlackjackPi\\images\\hit button.png").convert_alpha()
         self.image = pygame.transform.rotozoom(self.image, 0, 0.2)
         self.rect =  self.image.get_rect(midbottom = (700, 150))
     
@@ -52,9 +52,9 @@ pygame.display.set_caption('Black Jack')
 # clock for fps
 clock = pygame.time.Clock()
 
-text_font = pygame.font.Font("Pi-Project\\BlackjackPi\\font\\LGGothic.ttf", 25)
+text_font = pygame.font.Font("BlackjackPi\\font\\LGGothic.ttf", 25)
 
-bg_img = pygame.image.load("Pi-Project\\BlackjackPi\\images\\blackjack background.png").convert_alpha()
+bg_img = pygame.image.load("BlackjackPi\\images\\blackjack background.png").convert_alpha()
 
 hit_button = pygame.sprite.GroupSingle()
 hit_button.add(HitButton())

@@ -32,7 +32,26 @@ class HitButton(pygame.sprite.Sprite):
     
     def hit(self):
         pass
+    
+class DoubleButton(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("#").convert_alpha()
+        self.image = pygame.transform.rotozoom(self.image, 0, 0.4)
+        self.rect = self.image.get_rect(midbottom = ())############
 
+    def double(self):
+        pass
+
+class SplitButton(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("#").convert_alpha()
+        self.image = pygame.transform.rotozoom(self.image, 0, 0.4)
+        self.rect = self.image.get_rect(midbottom = ())############
+
+    def split(self):
+        pass
 
 class Card:
     def __init__(self, suit, val):
@@ -64,7 +83,7 @@ class Deck:
 
     def shuffle(self):
         for i in range(len(self.cards) -1, 0, -1):
-            r = random.randint(0, i)
+            r = randint(0, i)
             self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
     def drawCard(self):

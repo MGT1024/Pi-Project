@@ -50,9 +50,9 @@ def hitting():
     GP.output(leds[3], GP.HIGH)
     sleep(8)
 def busting():
-    GP.output(six, GP.HIGH)
+    GP.output(redLED, GP.HIGH)
     sleep(0.5)
-    GP.output(six, GP.LOW)
+    GP.output(redLED, GP.LOW)
     sleep(0.5)
 
 gpio = setGPIO()

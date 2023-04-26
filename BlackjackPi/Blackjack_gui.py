@@ -6,6 +6,9 @@ from time import sleep
 ##TODO##
 # Implement Cheater Class
 # Implement the camera stuff
+# Implement double and split
+# Implement GPIO components
+# Fix infinite dealing glitch
 
 # FUNCTIONS #
 def game_restart():
@@ -16,7 +19,6 @@ def game_restart():
         PLAYER.take_card()
     DEALER.take_card()
     DEALER.take_card(True)
-    
 
 def display_text():
     dealer_text_surf = text_font.render("Dealer Hand:", False, (255, 255, 255))
@@ -293,4 +295,4 @@ while True:
     # updates window
     pygame.display.update()
     # caps at 60 fps
-    clock.tick(5)
+    clock.tick(60)

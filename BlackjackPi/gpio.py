@@ -4,11 +4,11 @@ from xmlrpc.server import SimpleXMLRPCDispatcher
 import RPi.GPIO as GP
 from time import sleep
 
-HIT = False
-SPLIT = False
-DOUBLE = False
-STAND = False
-BUST = False
+HIT = bool
+SPLIT = bool
+DOUBLE = bool
+STAND = bool
+BUST = bool
 
 GP.setmode(GP.BCM)
 six = 6

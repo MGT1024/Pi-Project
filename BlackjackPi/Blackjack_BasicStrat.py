@@ -25,7 +25,6 @@ if val == "A":
     val = 11
 
 
-
 if (val1 == 11 or val2 == 11) and (val1 == 10 or val2 == 10):
     print("Blackjack!")
     quit()
@@ -52,18 +51,12 @@ def outputs():
 
     match output: 
         case "HIT":
-            HIT = True
-            sleep(1)
-            HIT = False
+            hitting()
+            
         case "STAND":
-            STAND = True
-            sleep(1)
-            STAND = False
+            standing()
         case "SPLIT":
-            SPLIT = True
-            sleep(1)
-            SPLIT = False
+            splitting()
         case "DOUBLE DOWN":
-            DOUBLE = True
-            sleep(1)
-            DOUBLE = False
+            dublin()
+outputs()

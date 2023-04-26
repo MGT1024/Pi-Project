@@ -28,6 +28,8 @@ if val == "A":
 if (val1 == 11 or val2 == 11) and (val1 == 10 or val2 == 10):
     print("Blackjack!")
     quit()
+if points > 21:
+    busting()
     
 
 #   HARD TOTALS
@@ -49,14 +51,25 @@ def outputs():
         output = (pairSplittingDict[val1][val])
         print(output)
 
+    if "HIT" in output:
+        hitting()
+    elif "STAND" in output:
+        standing()
+    elif  "SPLIT" in output:
+        splitting()
+    elif "DOUBLE DOWN" in output:
+        dublin()
+    elif "Blackjack" in output:
+        blackjack()
 
-    match output: 
-        case "HIT":
-            hitting()
-        case "STAND":
-            standing()
-        case "SPLIT":
-            splitting()
-        case "DOUBLE DOWN":
-            dublin()
+    #pip3.11 instal RPi.GPIO
+    # match output: 
+    #     case "HIT":
+    #         hitting()
+    #     case "STAND":
+    #         standing()
+    #     case "SPLIT":
+    #         splitting()
+    #     case "DOUBLE DOWN":
+    #         dublin()
 outputs()

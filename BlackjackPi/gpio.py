@@ -2,16 +2,16 @@ import RPi.GPIO as GP
 from time import sleep
 
 GP.setmode(GP.BCM)
-six = 6
-tTeen = 13
-nTeen = 19
-tOne = 21
+redLED = 6
+blueLED = 13
+yellowLED = 19
+greenLED = 21
 def setGPIO():
     gpio = [6, 13,  19, 21]
     GP.setup(gpio, GP.OUT)
     return gpio
 
-leds = [six,tTeen,nTeen,tOne]
+leds = [redLED,blueLED,yellowLED,greenLED]
 GP.setup(leds, GP.OUT)
 GP.output(leds, GP.LOW)
 

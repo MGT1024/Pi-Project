@@ -3,15 +3,139 @@ from sys import exit
 from random import randint, choices
 ##TODO##
 # Add dealer and player logic to hit and stand
+# Implement double and split
+# Implement GPIO components
+# Fix infinite dealing glitch
 
 # FUNCTIONS #
-def display_money(money):
+def game_restart():
+    PLAYER.clear_hand()
+    DEALER.clear_hand()
+    DECK.shuffle()
+    for i in range(0, 2):
+        PLAYER.take_card()
+    DEALER.take_card()
+    DEALER.take_card(True)
+    
 
-    money_surf = text_font.render(f'Money: {money}', False, (255, 255, 255))
-    money_rect = money_surf.get_rect(topleft = (10, 0))
-    screen.blit(money_surf, money_rect)
+def display_text():
+    dealer_text_surf = text_font.render("Dealer Hand:", False, (255, 255, 255))
+    dealer_text_rect = dealer_text_surf.get_rect(topleft = (10, 100))
+    screen.blit(dealer_text_surf, dealer_text_rect)
+
+    player_text_surf = text_font.render("Player Hand:", False, (255, 255, 255))
+    player_text_rect = player_text_surf.get_rect(topleft = (10, 225))
+    screen.blit(player_text_surf, player_text_rect)
 
 # CLASSES #
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.hand_xcoord = 10
+        self.hand_ycoord = 250
+        self.hand = pygame.sprite.Group()
+        self.card_vals = 0
+        self.number_aces = 0
+        self.money = 0
+        self.turn = True
+    
+    def take_card(self):
+        current_card = Card(DECK.drawCard(), self.hand_xcoord, self.hand_ycoord)
+        if current_card.face == "a": self.number_aces += 1
+        self.card_vals += current_card.val
+        self.hand.add(current_card)
+        self.hand_xcoord += 50
+
+    def clear_hand(self):
+        self.hand_xcoord = 10
+        self.hand.empty()
+        self.card_vals = 0
+
+    def display_money(self):
+        money_surf = text_font.render(f"Money: ${self.money}", False, (255, 255, 255))
+        money_rect = money_surf.get_rect(topleft = (10, 0))
+        screen.blit(money_surf, money_rect)
+    
+    def calc_score(self):
+        total = self.card_vals
+        aces = self.number_aces
+        while total > 21 and aces > 0:
+            total -= 10
+            aces -= 1
+        self.card_vals = total
+        self.number_aces = aces
+        if self.card_vals > 21: 
+            self.turn = False
+            self.lose()
+
+    def lose(self):
+        self.money -= 100
+        print("Lost")
+
+    def win(self):
+        self.money += 100
+        print("Won")
+
+    def update(self):
+        if self.number_aces > 0: self.calc_score()
+        self.display_money()
+
+class Dealer(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.hand_xcoord = 10
+        self.hand_ycoord = 125
+        self.hand = pygame.sprite.Group()
+        self.card_vals = 0
+        self.turn = False
+        self.number_aces = 0
+
+    def take_card(self, hidden=False):
+        current_card = Card(DECK.drawCard(), self.hand_xcoord, self.hand_ycoord, hidden)
+        self.card_vals += current_card.val
+        self.hand.add(current_card)
+        if current_card.face == "a": self.number_aces += 1
+        self.hand_xcoord += 50
+    
+    def clear_hand(self):
+        self.hand_xcoord = 10
+        self.card_vals = 0
+        self.hand.empty()
+
+    def reveal_hidden(self):
+        for card in self.hand:
+            if card.hidden:
+                card.image = pygame.image.load(f"BlackjackPi\\images\\cards\\card{card.face}{card.suit}.png").convert_alpha()
+                card.image = pygame.transform.rotozoom(card.image, 0, 0.5)
+    
+    def calc_score(self):
+        total = self.card_vals
+        aces = self.number_aces
+        while total > 21 and aces > 0:
+            total -= 10
+            aces -= 1
+        self.card_vals = total
+        self.number_aces = aces
+
+    def play(self):
+        self.reveal_hidden()
+        while self.card_vals < 17:
+            self.take_card()
+            self.calc_score()
+
+    def win_or_loss(self):
+        if self.card_vals < PLAYER.card_vals: PLAYER.win()
+        elif self.card_vals > 21: PLAYER.win()
+
+        elif self.card_vals > PLAYER.card_vals: PLAYER.lose()
+        print(self.card_vals)
+        print(PLAYER.card_vals)
+        self.turn = False
+
+    def update(self):
+        self.play()
+        self.win_or_loss()
+
 class StandButton(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()

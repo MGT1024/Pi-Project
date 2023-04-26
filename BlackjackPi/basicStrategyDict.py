@@ -24,7 +24,7 @@ hardTotalDict = {
     8: "STAND",
     9: "STAND",
     10: "STAND",
-    "A": "STAND",
+    11: "STAND",
     },
     19: {
     2: "STAND",
@@ -36,7 +36,7 @@ hardTotalDict = {
     8: "STAND",
     9: "STAND",
     10: "STAND",
-    "A": "STAND",
+    11: "STAND",
     },
     18: {
     2: "STAND",
@@ -48,7 +48,7 @@ hardTotalDict = {
     8: "STAND",
     9: "STAND",
     10: "STAND",
-    "A": "STAND",
+    11: "STAND",
     },
     17: {
     2: "STAND",
@@ -60,7 +60,7 @@ hardTotalDict = {
     8: "STAND",
     9: "STAND",
     10: "STAND",
-    "A": "STAND",
+    11: "STAND",
     },
     16: {
     2: "STAND",
@@ -72,7 +72,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     15: {
     2: "STAND",
@@ -84,7 +84,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     14: {
     2: "STAND",
@@ -96,7 +96,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     13: {
     2: "STAND",
@@ -108,7 +108,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     12: {
     2: "HIT",
@@ -120,7 +120,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     11: {
     2: "DOUBLE DOWN",
@@ -132,7 +132,7 @@ hardTotalDict = {
     8: "DOUBLE DOWN",
     9: "DOUBLE DOWN",
     10: "DOUBLE DOWN",
-    "A": "DOUBLE DOWN",
+    11: "DOUBLE DOWN",
     },
     10: {
     2: "DOUBLE DOWN",
@@ -144,7 +144,7 @@ hardTotalDict = {
     8: "DOUBLE DOWN",
     9: "DOUBLE DOWN",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     9: {
     2: "HIT",
@@ -156,7 +156,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     8: {
     2: "HIT",
@@ -168,7 +168,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     7: {
     2: "HIT",
@@ -180,7 +180,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     6: {
     2: "HIT",
@@ -192,7 +192,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     5: {
     2: "HIT",
@@ -204,7 +204,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
     4: {
     2: "HIT",
@@ -216,7 +216,7 @@ hardTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT",
+    11: "HIT",
     },
 }
 softTotalDict = {
@@ -230,7 +230,7 @@ softTotalDict = {
     8: "STAND",
     9: "STAND",
     10: "STAND",
-    "A": "STAND"
+    11: "STAND"
     },
     8: {
     2: "STAND",
@@ -242,7 +242,7 @@ softTotalDict = {
     8: "STAND",
     9: "STAND",
     10: "STAND",
-    "A": "STAND"
+    11: "STAND"
     },
     7: {
     2: "DOUBLE DOWN",
@@ -254,7 +254,7 @@ softTotalDict = {
     8: "STAND",
     9: "HIT",
     10: "HIT",
-    "A": "HIT"
+    11: "HIT"
     },
     6: {
     2: "HIT",
@@ -266,7 +266,7 @@ softTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT"
+    11: "HIT"
     },
     5: {
     2: "HIT",
@@ -278,7 +278,7 @@ softTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT"
+    11: "HIT"
     },
     4: {
     2: "HIT",
@@ -290,7 +290,7 @@ softTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT"
+    11: "HIT"
     },
     3: {
     2: "HIT",
@@ -302,7 +302,7 @@ softTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT"
+    11: "HIT"
     },
     2: {
     2: "HIT",
@@ -314,11 +314,11 @@ softTotalDict = {
     8: "HIT",
     9: "HIT",
     10: "HIT",
-    "A": "HIT"
+    11: "HIT"
     }
 }
 pairSplittingDict = {
-    "A": {
+    11: {
     2: "SPLIT",
     3: "SPLIT",
     4: "SPLIT",
@@ -328,7 +328,7 @@ pairSplittingDict = {
     8: "SPLIT",
     9: "SPLIT",
     10: "SPLIT",
-    "A": "SPLIT"
+    11: "SPLIT"
     },
     10: {
     2: "STAND",
@@ -340,7 +340,7 @@ pairSplittingDict = {
     8: "STAND",
     9: "STAND",
     10: "STAND",
-    "A": "STAND"
+    11: "STAND"
     },
     9: {
     2: "SPLIT",
@@ -352,7 +352,7 @@ pairSplittingDict = {
     8: "SPLIT",
     9: "SPLIT",
     10: "STAND",
-    "A": "STAND"
+    11: "STAND"
     },
     8: {
     2: "SPLIT",
@@ -364,7 +364,7 @@ pairSplittingDict = {
     8: "SPLIT",
     9: "SPLIT",
     10: "SPLIT",
-    "A": "SPLIT"
+    11: "SPLIT"
     },
     7: {
     2: "SPLIT",
@@ -373,10 +373,10 @@ pairSplittingDict = {
     5: "SPLIT",
     6: "SPLIT",
     7: "SPLIT",
-    8: "DO NOT SPLIT",
-    9: "DO NOT SPLIT",
-    10: "DO NOT SPLIT",
-    "A": "DO NOT SPLIT"
+    8: "HIT", 
+    9: "HIT",
+    10: "HIT",
+    11: "HIT"
     },
     6: {
     2: "SPLIT AND DOUBLE DOWN",
@@ -384,35 +384,35 @@ pairSplittingDict = {
     4: "SPLIT",
     5: "SPLIT",
     6: "SPLIT",
-    7: "DO NOT SPLIT",
-    8: "DO NOT SPLIT",
-    9: "DO NOT SPLIT",
-    10: "DO NOT SPLIT",
-    "A": "DO NOT SPLIT"
+    7: "HIT",
+    8: "HIT",
+    9: "HIT",
+    10: "HIT",
+    11: "HIT"
     },
     5: {
-    2: "DO NOT SPLIT",
-    3: "DO NOT SPLIT",
-    4: "DO NOT SPLIT",
-    5: "DO NOT SPLIT",
-    6: "DO NOT SPLIT",
-    7: "DO NOT SPLIT",
-    8: "DO NOT SPLIT",
-    9: "DO NOT SPLIT",
-    10: "DO NOT SPLIT",
-    "A": "DO NOT SPLIT"
+    2: "HIT",
+    3: "HIT",
+    4: "HIT",
+    5: "HIT",
+    6: "HIT",
+    7: "HIT",
+    8: "HIT",
+    9: "HIT",
+    10: "HIT",
+    11: "HIT"
     },
     4: {
-    2: "DO NOT SPLIT",
-    3: "DO NOT SPLIT",
-    4: "DO NOT SPLIT",
+    2: "HIT",
+    3: "HIT",
+    4: "HIT",
     5: "SPLIT AND DOUBLE DOWN",
     6: "SPLIT AND DOUBLE DOWN",
-    7: "DO NOT SPLIT",
-    8: "DO NOT SPLIT",
-    9: "DO NOT SPLIT",
-    10: "DO NOT SPLIT",
-    "A": "DO NOT SPLIT"
+    7: "HIT",
+    8: "HIT",
+    9: "HIT",
+    10: "HIT",
+    11: "HIT"
     },
     3: {
     2: "SPLIT AND DOUBLE DOWN",
@@ -421,10 +421,10 @@ pairSplittingDict = {
     5: "SPLIT",
     6: "SPLIT",
     7: "SPLIT",
-    8: "DO NOT SPLIT",
-    9: "DO NOT SPLIT",
-    10: "DO NOT SPLIT",
-    "A": "DO NOT SPLIT"
+    8: "HIT",
+    9: "HIT",
+    10: "HIT",
+    11: "HIT"
     },
     2: {
     2: "SPLIT AND DOUBLE DOWN",
@@ -433,9 +433,9 @@ pairSplittingDict = {
     5: "SPLIT",
     6: "SPLIT",
     7: "SPLIT",
-    8: "DO NOT SPLIT",
-    9: "DO NOT SPLIT",
-    10: "DO NOT SPLIT",
-    "A": "DO NOT SPLIT"
+    8: "HIT",
+    9: "HIT",
+    10: "HIT",
+    11: "HIT"
     }
 }

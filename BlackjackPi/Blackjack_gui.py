@@ -126,8 +126,8 @@ class Dealer(pygame.sprite.Sprite):
             self.calc_score()
 
     def win_or_loss(self):
-        if self.card_vals < PLAYER.card_vals: PLAYER.win()
-        elif self.card_vals > 21: PLAYER.win()
+        if self.card_vals < PLAYER.card_vals and PLAYER.card_vals <= 21: PLAYER.win()
+        elif self.card_vals > 21: PLAYER.lose()
 
         elif self.card_vals > PLAYER.card_vals: PLAYER.lose()
         print(self.card_vals)

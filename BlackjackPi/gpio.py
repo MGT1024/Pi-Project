@@ -1,6 +1,6 @@
 import RPi.GPIO as GP
 from time import sleep
-
+#
 GP.setmode(GP.BCM)
 redLED = 6
 blueLED = 13

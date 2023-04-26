@@ -1,6 +1,8 @@
 from functools import reduce
 from basicStrategyDict import *
 import random
+from gpio import *
+from time import sleep
 # from gpio import *
 # hands 
 dealerUpCard = []
@@ -30,18 +32,38 @@ if (val1 == 11 or val2 == 11) and (val1 == 10 or val2 == 10):
     
 
 #   HARD TOTALS
-if "A" not in hand and val1 != val2:
-    print(hardTotalDict[points][val])
+def outputs():
+    if "A" not in hand and val1 != val2:
+        output = (hardTotalDict[points][val])
+        print(output)
 
 
-if "A" == hand[0] and hand[0] != hand[1]:
-    print(softTotalDict[val2][val])
+    if "A" == hand[0] and hand[0] != hand[1]:
+        output = (softTotalDict[val2][val])
+        print(output)
 
-if "A" == hand[1] and hand[0] != hand[1]:
-    print(softTotalDict[val1][val])
+    if "A" == hand[1] and hand[0] != hand[1]:
+        output = (softTotalDict[val1][val])
+        print(output)
 
+    if val1 == val2:
+        output = (pairSplittingDict[val1][val])
+        print(output)
 
-if val1 == val2:
-    print(pairSplittingDict[val1][val])
-    
-
+    match output: 
+        case "HIT":
+            HIT = True
+            sleep(1)
+            HIT = False
+        case "STAND":
+            STAND = True
+            sleep(1)
+            STAND = False
+        case "SPLIT":
+            SPLIT = True
+            sleep(1)
+            SPLIT = False
+        case "DOUBLE DOWN":
+            DOUBLE = True
+            sleep(1)
+            DOUBLE = False

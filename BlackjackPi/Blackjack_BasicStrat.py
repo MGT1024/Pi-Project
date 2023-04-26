@@ -4,6 +4,7 @@ import random
 # from gpio import *
 # hands 
 dealerUpCard = []
+
 hand = []
 points = 0
 card1, val1 = random.choice(list(deckOfCards.items()))
@@ -18,31 +19,29 @@ dealers, val= random.choice(list(deckOfCards.items()))
 dealerUpCard.append(dealers)
 print(f"Dealer's showing a {dealers}, {val} points")
 
+if val == "A":
+    val = 11
 
+
+
+if (val1 == 11 or val2 == 11) and (val1 == 10 or val2 == 10):
+    print("Blackjack!")
+    quit()
+    
 
 #   HARD TOTALS
-# if points > 21:
-#     BUST == True
+if "A" not in hand and val1 != val2:
+    print(hardTotalDict[points][val])
 
 
+if "A" == hand[0] and hand[0] != hand[1]:
+    print(softTotalDict[val2][val])
 
-# if hand[0] == 11:
-#     print(softTotalDict[hand[0]][dealerUpCard])
-
-# elif hand[0] == hand[1]:
-#     print(pairSplittingDict[hand[0]][dealerUpCard])
-
-# else:
-#     print(hardTotalDict[handTotal][dealerUpCard])
+if "A" == hand[1] and hand[0] != hand[1]:
+    print(softTotalDict[val1][val])
 
 
-# def hardTotal():
-#     hardTotalDict[None][None]
-
-# def softTotal():
-#     softTotalDict[None][None]
-
-# def pairSplitting():
-#     pairSplittingDict[None][None]
-
+if val1 == val2:
+    print(pairSplittingDict[val1][val])
+    
 

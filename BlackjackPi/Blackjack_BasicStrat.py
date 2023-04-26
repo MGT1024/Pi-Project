@@ -52,7 +52,6 @@ def outputs():
     match output: 
         case "HIT":
             hitting()
-            
         case "STAND":
             standing()
         case "SPLIT":

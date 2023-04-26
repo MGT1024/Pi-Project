@@ -1,14 +1,5 @@
-from tkinter.ttk import LabeledScale
-from turtle import hideturtle
-from xmlrpc.server import SimpleXMLRPCDispatcher
 import RPi.GPIO as GP
 from time import sleep
-
-HIT = bool
-SPLIT = bool
-DOUBLE = bool
-STAND = bool
-BUST = bool
 
 GP.setmode(GP.BCM)
 six = 6
@@ -63,25 +54,6 @@ def busting():
     sleep(0.5)
     GP.output(six, GP.LOW)
     sleep(0.5)
-
-if STAND :
-    standing()
-elif DOUBLE:
-    dublin()
-elif SPLIT:
-    splitting()
-elif HIT:
-    hitting()
-elif BUST:
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-else: allOff()
 
 gpio = setGPIO()
 

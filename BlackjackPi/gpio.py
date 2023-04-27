@@ -1,89 +1,136 @@
-from tkinter.ttk import LabeledScale
-from turtle import hideturtle
-from xmlrpc.server import SimpleXMLRPCDispatcher
 import RPi.GPIO as GP
 from time import sleep
-
-HIT = False
-SPLIT = False
-DOUBLE = False
-STAND = False
-BUST = False
-
+#setup pins
 GP.setmode(GP.BCM)
-six = 6
-tTeen = 13
-nTeen = 19
-tOne = 21
-def setGPIO():
-    gpio = [6, 13,  19, 21]
-    GP.setup(gpio, GP.OUT)
-    return gpio
-
-leds = [six,tTeen,nTeen,tOne]
+redLED = 6
+blueLED = 13
+yellowLED = 19
+greenLED = 21
+leds = [redLED,blueLED,yellowLED,greenLED]
 GP.setup(leds, GP.OUT)
 GP.output(leds, GP.LOW)
 
+#LEDS FUNCTIONS
 def allOff():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
     GP.output(leds, GP.LOW)
     
    
 def allOn():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
     GP.output(leds, GP.HIGH)
     sleep(5)
+    GP.output(leds, GP.LOW)
 
+def redOn():    
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
+    GP.output (leds[0], GP.HIGH),
+    GP.output(leds[1], GP.LOW),
+    GP.output(leds[2], GP.LOW),
+    GP.output(leds[3], GP.LOW)
 
-def standing():
-   GP.output (leds[0], GP.HIGH),
-   GP.output(leds[1], GP.LOW),
-   GP.output(leds[2], GP.LOW),
-   GP.output(leds[3], GP.LOW)
-   sleep(8)
-   
-def dublin():
+def blueOn():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
     GP.output (leds[0], GP.LOW),
     GP.output(leds[1], GP.HIGH),
     GP.output(leds[2], GP.LOW),
     GP.output(leds[3], GP.LOW)
-    sleep(8)
-def splitting():
+
+def yellowOn():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
     GP.output (leds[0], GP.LOW),
     GP.output(leds[1], GP.LOW),
     GP.output(leds[2], GP.HIGH),
     GP.output(leds[3], GP.LOW)
-    sleep(8)
-def hitting():
-    GP.output (leds[0], GP.LOW),
+
+def greenOn():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
+    GP.output(leds[0], GP.LOW),
     GP.output(leds[1], GP.LOW),
     GP.output(leds[2], GP.LOW),
     GP.output(leds[3], GP.HIGH)
-    sleep(8)
+
+def YellAndBlu():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
+    GP.ouput(leds[0],GP.LOW)
+    GP.output(leds[1],GP.HIGH)
+    GP.output(leds[2], GP.HIGH)
+    GP.output(leds[3], GP.LOW)
+
+def Bust():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
+    GP.output(redLED, GP.HIGH)
+    sleep(0.5)
+    GP.output(redLED, GP.LOW)
+    sleep(0.5)
+    GP.output(leds, GP.LOW)
+
+def Blackjack():
+    GP.setmode(GP.BCM)
+    GP.setup(leds, GP.OUT)
+    GP.output(leds[0], GP.HIGH)
+    sleep(.2)
+    GP.output(leds[0], GP.LOW),
+    GP.output(leds[1], GP.HIGH),
+    GP.output(leds[2], GP.LOW),
+    GP.output(leds[3], GP.LOW)
+    sleep(.2)
+    GP.output(leds[0], GP.LOW),
+    GP.output(leds[1], GP.LOW),
+    GP.output(leds[2], GP.HIGH),
+    GP.output(leds[3], GP.LOW)
+    sleep(.2)
+    GP.output(leds[0], GP.LOW),
+    GP.output(leds[1], GP.LOW),
+    GP.output(leds[2], GP.LOW),
+    GP.output(leds[3], GP.HIGH)
+    sleep(.2)
+    GP.output(leds[0], GP.LOW),
+    GP.output(leds[1], GP.LOW),
+    GP.output(leds[2], GP.LOW),
+    GP.output(leds[3], GP.LOW)
+
+
+#controlling lights and times
+def standing():
+   redOn()
+   sleep(2)
+   allOff()
+   
+def dublin():
+    blueOn()
+    sleep(2)
+    allOff()
+
+def splitting():
+    yellowOn()
+    sleep(2)
+    allOff()
+
+def hitting():
+    greenOn()
+    sleep(2)
+    allOff()
+
+def splitAndDouble():
+    YellAndBlu()
+    sleep(2)
+    allOff()
+
 def busting():
-    GP.output(six, GP.HIGH)
-    sleep(0.5)
-    GP.output(six, GP.LOW)
-    sleep(0.5)
+    Bust()
 
-if STAND :
-    standing()
-elif DOUBLE:
-    dublin()
-elif SPLIT:
-    splitting()
-elif HIT:
-    hitting()
-elif BUST:
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-    busting()
-else: allOff()
+def blackjack():
+    Blackjack()
 
-gpio = setGPIO()
 
 
 GP.cleanup()

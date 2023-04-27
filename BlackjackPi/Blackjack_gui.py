@@ -4,11 +4,6 @@ from random import randint
 from time import sleep
 
 ##TODO##
-# Implement Cheater Class
-# Implement the camera stuff
-# Implement double and split
-# Implement GPIO components
-# Fix infinite dealing glitch
 
 # FUNCTIONS #
 def game_restart():
@@ -45,6 +40,7 @@ class Player(pygame.sprite.Sprite):
         current_card = Card(DECK.drawCard(), self.hand_xcoord, self.hand_ycoord)
         if current_card.face == "a": self.number_aces += 1
         self.card_vals += current_card.val
+        self.calc_score()
         self.hand.add(current_card)
         self.hand_xcoord += 50
 
@@ -66,7 +62,7 @@ class Player(pygame.sprite.Sprite):
             aces -= 1
         self.card_vals = total
         self.number_aces = aces
-        if self.card_vals > 21: 
+        if self.card_vals > 21:
             self.turn = False
             self.lose()
 
@@ -79,7 +75,6 @@ class Player(pygame.sprite.Sprite):
         print("Won")
 
     def update(self):
-        if self.number_aces > 0: self.calc_score()
         self.display_money()
 
 class Dealer(pygame.sprite.Sprite):
@@ -271,7 +266,7 @@ while True:
                 if hit_button.sprite.rect.collidepoint(mouse_pos):
                     if PLAYER.turn: 
                         PLAYER.take_card()
-                    else: 
+                    else:
                         game_restart()
                         PLAYER.turn = True
                     

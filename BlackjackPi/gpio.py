@@ -76,27 +76,11 @@ def Bust():
 def Blackjack():
     GP.setmode(GP.BCM)
     GP.setup(leds, GP.OUT)
-    GP.output(leds[0], GP.HIGH)
-    sleep(.2)
-    GP.output(leds[0], GP.LOW),
-    GP.output(leds[1], GP.HIGH),
-    GP.output(leds[2], GP.LOW),
-    GP.output(leds[3], GP.LOW)
-    sleep(.2)
-    GP.output(leds[0], GP.LOW),
-    GP.output(leds[1], GP.LOW),
-    GP.output(leds[2], GP.HIGH),
-    GP.output(leds[3], GP.LOW)
-    sleep(.2)
-    GP.output(leds[0], GP.LOW),
-    GP.output(leds[1], GP.LOW),
-    GP.output(leds[2], GP.LOW),
-    GP.output(leds[3], GP.HIGH)
-    sleep(.2)
-    GP.output(leds[0], GP.LOW),
-    GP.output(leds[1], GP.LOW),
-    GP.output(leds[2], GP.LOW),
-    GP.output(leds[3], GP.LOW)
+    GP.output(greenLED, GP.HIGH)
+    sleep(0.5)
+    GP.output(greenLED, GP.LOW)
+    sleep(0.5)
+    GP.output(leds, GP.LOW)
 
 
 #controlling lights and times

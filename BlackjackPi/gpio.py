@@ -59,8 +59,8 @@ def greenOn():
 def YellAndBlu():
     GP.setmode(GP.BCM)
     GP.setup(leds, GP.OUT)
-    GP.ouput(leds[0],GP.LOW)
-    GP.output(leds[1],GP.HIGH)
+    GP.output(leds[0], GP.LOW)
+    GP.output(leds[1], GP.HIGH)
     GP.output(leds[2], GP.HIGH)
     GP.output(leds[3], GP.LOW)
 
@@ -74,13 +74,15 @@ def Bust():
     GP.output(leds, GP.LOW)
 
 def Blackjack():
-    GP.setmode(GP.BCM)
-    GP.setup(leds, GP.OUT)
-    GP.output(greenLED, GP.HIGH)
-    sleep(0.5)
-    GP.output(greenLED, GP.LOW)
-    sleep(0.5)
-    GP.output(leds, GP.LOW)
+    redOn()
+    sleep(.2)
+    blueOn()
+    sleep(.2)
+    yellowOn()
+    sleep(.2)
+    greenOn()
+    sleep(.2)
+    
 
 
 #controlling lights and times
@@ -113,8 +115,15 @@ def busting():
     Bust()
 
 def blackjack():
-    Blackjack()
+    redOn()
+    sleep(.2)
+    blueOn()
+    sleep(.2)
+    yellowOn()
+    sleep(.2)
+    greenOn()
+    sleep(.2)
 
 
-
+GP.setwarnings(False)
 GP.cleanup()

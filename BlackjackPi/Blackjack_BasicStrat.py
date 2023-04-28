@@ -60,8 +60,16 @@ def outputs():
     elif "DOUBLE DOWN" in output:
         dublin()
     elif "Blackjack" in output:
-        Blackjack()
-    elif "AND" in output:
-        splitAndDouble()
+        blackjack()
 
+    #pip3.11 instal RPi.GPIO
+    # match output: 
+    #     case "HIT":
+    #         hitting()
+    #     case "STAND":
+    #         standing()
+    #     case "SPLIT":
+    #         splitting()
+    #     case "DOUBLE DOWN":
+    #         dublin()
 outputs()

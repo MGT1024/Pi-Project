@@ -1,19 +1,19 @@
 import pygame
 from sys import exit
-from random import randint
-from time import sleep
+from Cards import card_list
+from word2number import w2n
+
 
 ##TODO##
 
 # FUNCTIONS #
-def game_restart():
-    PLAYER.clear_hand()
-    DEALER.clear_hand()
-    DECK.shuffle()
-    for i in range(0, 2):
-        PLAYER.take_card()
-    DEALER.take_card()
-    DEALER.take_card(True)
+def start(restart=False):
+    global card_list
+    if restart:
+        card_list = []
+        PLAYER.hand = []
+        DEALER.hand = []
+    return len(DEALER.hand) == 2 and len(PLAYER.hand) == 2
 
 def display_text():
     dealer_text_surf = text_font.render("Dealer Hand:", False, (255, 255, 255))
@@ -37,12 +37,13 @@ class Player(pygame.sprite.Sprite):
         self.turn = True
     
     def take_card(self):
-        current_card = Card(DECK.drawCard(), self.hand_xcoord, self.hand_ycoord)
-        if current_card.face == "a": self.number_aces += 1
-        self.card_vals += current_card.val
-        self.calc_score()
-        self.hand.add(current_card)
-        self.hand_xcoord += 50
+        if len(card_list) == 1:
+            current_card = Card(DECK.drawCard(), self.hand_xcoord, self.hand_ycoord)
+            if current_card.face == "ace": self.number_aces += 1
+            self.card_vals += current_card.val
+            self.calc_score()
+            self.hand.add(current_card)
+            self.hand_xcoord += 50
 
     def clear_hand(self):
         self.hand_xcoord = 10
@@ -91,7 +92,7 @@ class Dealer(pygame.sprite.Sprite):
         current_card = Card(DECK.drawCard(), self.hand_xcoord, self.hand_ycoord, hidden)
         self.card_vals += current_card.val
         self.hand.add(current_card)
-        if current_card.face == "a": self.number_aces += 1
+        if current_card.face == "ace": self.number_aces += 1
         self.hand_xcoord += 50
     
     def clear_hand(self):
@@ -151,20 +152,21 @@ class HitButton(pygame.sprite.Sprite):
 class Card(pygame.sprite.Sprite):
     def __init__(self, card_info, x_coord, y_coord, hidden=False):
         super().__init__()
-        self.suit = card_info[0]
-        self.val = card_info[1]
+        self.suit = card_info[1]
+        self.face = card_info[0]
+        self.val = 0
         self.hidden = hidden
-        match card_info[1]:
-            case 11:
-                self.face = "a"
-            case 12:
-                self.face = "j"
-            case 13:
-                self.face = "q"
-            case 14:
-                self.face = "k"
+        match card_info[0]:
+            case "ace":
+                self.val = 11
+            case "jack":
+                self.val = 10
+            case "queen":
+                self.val = 10
+            case "king":
+                self.val = 10
             case _:
-                self.face = card_info[1]
+                self.val = w2n.word_to_num(self.face)
         
         if self.val > 11:
             self.val = 10
@@ -179,22 +181,17 @@ class Card(pygame.sprite.Sprite):
         return f"{self.val} of {self.suit}"
 
 class Deck:
-    def __init__(self):
-        self.card_vals = []
-
-    def build(self):
-        for i in ["s", "c", "d", "h"]:
-            for j in range(2,15):
-                self.card_vals.append((i, j))
-
-    def shuffle(self):
-        self.build()
-        for i in range(len(self.card_vals) -1, 0, -1):
-            r = randint(0, i)
-            self.card_vals[i], self.card_vals[r] = self.card_vals[r], self.card_vals[i]
+    def __init__(self, card_list):
+        self.card_vals = card_list
+        self.card_face_suit = []
+    
+    def shuffle():
+        global card_list
+        card_list = []
 
     def drawCard(self):
-        return self.card_vals.pop()
+        self.card_face_suit.append(self.card_vals.pop())
+        return self.card_face_suit.split()
 
 class Cheater():
     pass
@@ -241,11 +238,9 @@ PLAYER = Player()
 deal_event = pygame.USEREVENT + 1
 pygame.time.set_timer(deal_event, 1000)
 
-# starting game
-game_restart()
-
 # LOOP #
 while True:
+    game_active = start()
     # tests for every button press in each frame
     for event in pygame.event.get():
         
@@ -265,26 +260,26 @@ while True:
 
                 if hit_button.sprite.rect.collidepoint(mouse_pos):
                     if PLAYER.turn: 
-                        PLAYER.take_card()
+                        while card_list == []:
+                            PLAYER.take_card()
                     else:
-                        game_restart()
+                        start(restart=True)
                         PLAYER.turn = True
                     
-    if game_active:
-        screen.blit(bg_img, (0, 0))
-        
-        stand_button.draw(screen)
-        
-        hit_button.draw(screen)
-        
-        display_text()
-        
-        PLAYER.update()
-        PLAYER.hand.draw(screen)
+    screen.blit(bg_img, (0, 0))
+    
+    stand_button.draw(screen)
+    
+    hit_button.draw(screen)
+    
+    display_text()
+    
+    PLAYER.update()
+    PLAYER.hand.draw(screen)
 
-        if not PLAYER.turn and DEALER.turn: DEALER.update()
+    if not PLAYER.turn and DEALER.turn: DEALER.update()
 
-        DEALER.hand.draw(screen)
+    DEALER.hand.draw(screen)
 
 
     # updates window

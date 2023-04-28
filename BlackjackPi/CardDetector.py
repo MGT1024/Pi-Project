@@ -1,11 +1,3 @@
-############## Python-OpenCV Playing Card Detector ###############
-#
-# Author: Evan Juras
-# Date: 9/5/17
-# Description: Python script to detect and identify playing cards
-# from a PiCamera video feed.
-#
-
 # Import necessary packages
 import cv2
 import numpy as np
@@ -40,8 +32,8 @@ time.sleep(1) # Give the camera time to warm up
 
 # Load the train rank and suit images
 path = os.path.dirname(os.path.abspath(__file__))
-train_ranks = Cards.load_ranks( path + '/Card_Imgs/')
-train_suits = Cards.load_suits( path + '/Card_Imgs/')
+train_ranks = Cards.load_ranks( path + '/images/Recognition/')
+train_suits = Cards.load_suits( path + '/images/Recognition/')
 
 
 ### ---- MAIN LOOP ---- ###

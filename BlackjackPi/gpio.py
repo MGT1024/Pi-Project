@@ -106,23 +106,8 @@ def hitting():
     sleep(2)
     allOff()
 
-# def splitAndDouble():
-#     YellAndBlu()
-#     sleep(2)
-#     allOff()
-
 def busting():
     Bust()
-
-# def blackjack():
-#     redOn()
-#     sleep(.2)
-#     blueOn()
-#     sleep(.2)
-#     yellowOn()
-#     sleep(.2)
-#     greenOn()
-#     sleep(.2)
 
 
 GP.setwarnings(False)

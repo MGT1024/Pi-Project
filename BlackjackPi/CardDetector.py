@@ -5,6 +5,7 @@ import time
 import os
 import Cards
 import VideoStream
+from interactFile import *
 
 
 ### ---- INITIALIZATION ---- ###
@@ -18,6 +19,7 @@ FRAME_RATE = 10
 ## Initialize calculated frame rate because it's calculated AFTER the first time it's displayed
 frame_rate_calc = 1
 freq = cv2.getTickFrequency()
+
 
 ## Define font to use
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -57,6 +59,8 @@ while cam_quit == 0:
     # Find and sort the contours of all cards in the image (query cards)
     cnts_sort, cnt_is_card = Cards.find_cards(pre_proc)
 
+    
+
     # If there are no contours, do nothing
     if len(cnts_sort) != 0:
 
@@ -80,12 +84,9 @@ while cam_quit == 0:
                 cards[k].best_rank_match,cards[k].best_suit_match,cards[k].rank_diff,cards[k].suit_diff = Cards.match_card(cards[k],train_ranks,train_suits)
 
                 # Draw center point and match result on the image.
-                image = Cards.draw_results(image, cards[k])
+                image, card_list = Cards.draw_results(image, cards[k])
                 k = k + 1
-
-                
-                
-                
+               
 	    
         # Draw card contours on image (have to do contours all at once or
         # they do not show up properly for some reason)
@@ -94,6 +95,9 @@ while cam_quit == 0:
             for i in range(len(cards)):
                 temp_cnts.append(cards[i].contour)
             cv2.drawContours(image,temp_cnts, -1, (255,0,0), 2)
+
+
+        
         
         
     # Draw framerate in the corner of the image. Framerate is calculated at the end of the main loop,
@@ -102,16 +106,22 @@ while cam_quit == 0:
 
     # Finally, display the image with the identified cards!
     cv2.imshow("Card Detector",image)
-
+    
     # Calculate framerate
     t2 = cv2.getTickCount()
     time1 = (t2-t1)/freq
     frame_rate_calc = 1/time1
-    
+    try:
     # Poll the keyboard. If 'q' is pressed, exit the main loop.
-    key = cv2.waitKey(1) & 0xFF
-    if key == ord("q"):
-        cam_quit = 1
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord("q"):
+            cam_quit = 1
+    except KeyboardInterrupt:
+        cv2.destroyAllWindows()
+        videostream.stop()
+        break
+    if len(loadData()) == 0:
+        Cards.card_list = []
         
 
 # Close all windows and close the PiCamera video stream.

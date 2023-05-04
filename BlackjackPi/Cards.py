@@ -2,6 +2,7 @@
 import numpy as np
 import cv2
 import time
+from interactFile import *
 
 ### Constants ###
 
@@ -236,8 +237,8 @@ def match_card(qCard, train_ranks, train_suits):
     the query card rank and suit images with the train rank and suit images.
     The best match is the rank or suit image that has the least difference."""
 
-    best_rank_match_diff = 10000
-    best_suit_match_diff = 10000
+    best_rank_match_diff = 50000
+    best_suit_match_diff = 50000
     best_rank_match_name = "Unknown"
     best_suit_match_name = "Unknown"
     i = 0
@@ -282,7 +283,6 @@ def match_card(qCard, train_ranks, train_suits):
     # Return the identiy of the card and the quality of the suit and rank match
     return best_rank_match_name, best_suit_match_name, best_rank_match_diff, best_suit_match_diff
     
-    
 def draw_results(image, qCard):
     """Draw the card name, center point, and contour on the camera image."""
 
@@ -307,10 +307,12 @@ def draw_results(image, qCard):
     # cv2.putText(image,r_diff,(x+20,y+30),font,0.5,(0,0,255),1,cv2.LINE_AA)
     # cv2.putText(image,s_diff,(x+20,y+50),font,0.5,(0,0,255),1,cv2.LINE_AA)
 
-    if rank_name != "Unknown" and suit_name != "Unknown" and f"{rank_name[0].lower()} {suit_name[0].lower()}" not in card_list:
-        card_list.append(f"{rank_name[0].lower()} {suit_name[0].lower()}")
+    if rank_name != "Unknown" and suit_name != "Unknown" and f"{rank_name.lower()}{suit_name[0].lower()}" not in card_list:
+        card_list.append(f"{rank_name.lower()}{suit_name[0].lower()}")
+        saveData(card_list)
+        
 
-    return image
+    return image, card_list
 
 def flattener(image, pts, w, h):
     """Flattens an image of a card into a top-down 200x300 perspective.

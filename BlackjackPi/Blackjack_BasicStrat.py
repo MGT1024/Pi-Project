@@ -59,17 +59,5 @@ def outputs():
         splitting()
     elif "DOUBLE DOWN" in output:
         dublin()
-    elif "Blackjack" in output:
-        blackjack()
-
-    #pip3.11 instal RPi.GPIO
-    # match output: 
-    #     case "HIT":
-    #         hitting()
-    #     case "STAND":
-    #         standing()
-    #     case "SPLIT":
-    #         splitting()
-    #     case "DOUBLE DOWN":
-    #         dublin()
+   
 outputs()
